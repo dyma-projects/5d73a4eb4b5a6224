@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-exercice1-enfant',
@@ -6,10 +6,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./exercice1-enfant.component.css']
 })
 export class Exercice1EnfantComponent implements OnInit {
-
-  constructor() { }
+  @Input() public  cpt: number; 
+  @Output() result = new EventEmitter();
+    
+  constructor() { 
+  }
 
   ngOnInit() {
   }
+
+
+  addValue(): void {
+    this.cpt = this.cpt + 1;
+    this.result.emit({
+      value: this.cpt
+    });
+    }
+
+  reduceValue(): void {
+    this.cpt = this.cpt - 1;
+    this.result.emit({
+      value: this.cpt
+    });
+    }
 
 }
